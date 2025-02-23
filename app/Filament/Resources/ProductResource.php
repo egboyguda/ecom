@@ -13,6 +13,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -41,7 +42,7 @@ class ProductResource extends Resource
                 FileUpload::make('img_url')
                 ->disk('public')
                 ->directory('products')
-                ->minSize(200)
+           
                 ->maxSize(5024),
                 
                 
@@ -61,7 +62,7 @@ class ProductResource extends Resource
                 TextColumn::make('category.name'),
                 TextColumn::make('price'),
 
-                TextColumn::make('img_url'),
+                ImageColumn::make('img_url'),
             ])
             ->filters([
                 //
