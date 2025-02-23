@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,6 +19,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->string('img_url');
             $table->timestamps();
+            $table->foreignIdFor(Category::class)->constrained()->onDelete('cascade');
         });
     }
 

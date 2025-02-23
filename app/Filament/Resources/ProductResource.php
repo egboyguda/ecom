@@ -4,9 +4,11 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Models\Category;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -32,8 +34,10 @@ class ProductResource extends Resource
                 TextInput::make('price')
                 ->type('number')
                 ->step('0.01')
-          
                 ->required() ,
+                Select::make('category_id')
+                ->options(Category::all()->pluck('name','id'))
+                ->required(),
                 FileUpload::make('img_url')
                 ->disk('public')
                 ->directory('products')
@@ -54,7 +58,9 @@ class ProductResource extends Resource
                 //
                 TextColumn::make('name'),
                 TextColumn::make('description'),
+                TextColumn::make('category.name'),
                 TextColumn::make('price'),
+
                 TextColumn::make('img_url'),
             ])
             ->filters([
