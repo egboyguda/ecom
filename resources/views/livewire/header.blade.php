@@ -8,7 +8,7 @@
       <input type="text" class="border-2 w-full border-gray-400 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" placeholder="Search">
     </div>
     <div>
-        cart {{ $total }}
+       <a wire:navigate href="/cart">cart {{ $total }}</a> 
 </div>
 </div>
 

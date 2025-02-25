@@ -6,10 +6,13 @@ use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Models\Order;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -25,6 +28,15 @@ class OrderResource extends Resource
         return $form
             ->schema([
                 //
+                Select::make('status')
+                ->options([
+                    'pending'=> 'Pending',
+                    'processing'=> 'Processing',
+                    'completed'=> 'Completed',
+                    'declined'=> 'Declined',
+
+                ])
+                ->rules('required')
             ]);
     }
 
@@ -41,6 +53,21 @@ class OrderResource extends Resource
             ])
             ->filters([
                 //
+              Filter::make('pending')->query(
+                function ($query){
+                    return $query->where('status','pending');
+                }
+            ),
+              Filter::make('processing')->query(
+                  function ($query){
+                      return $query->where('status','processing');
+                  }
+                ),
+                Filter::make('completed')->query(
+                    function ($query){
+                        return $query->where('status','completed');
+                    }
+                    ),
 
             ])
             ->actions([
