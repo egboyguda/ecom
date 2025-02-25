@@ -15,10 +15,15 @@ class Product extends Model
         "description",
         "price",
         "img_url",
+        "category_id",
     ];
     public function category():BelongsTo
     {
         return $this->belongsTo(Category::class);
 
+    }
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class,'order_items')->withPivot('quantity','price','total');
     }
 }

@@ -1,11 +1,13 @@
 <?php
 
+use App\Livewire\Cart;
 use App\Livewire\Home;
 use App\Livewire\ProductDetail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',Home::class)->name('home');
 Route::get('/product/{product}',ProductDetail::class)->name('product.detail');
+Route::get('/cart',Cart::class)->name('cart');
 // Route::view('dashboard', 'dashboard')
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');

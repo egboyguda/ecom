@@ -12,7 +12,7 @@ class ProductDetail extends Component
     
     public $quantity = 1;
     public function addCart(){
-        Cart::add($this->product->id,$this->product->name,$this->product->price,$this->quantity);
+        Cart::add($this->product->id,$this->product->name,$this->product->price,$this->quantity,['img_url'=>$this->product->img_url]);
         $this->dispatch('productAddedToCart');
     }
     public function mount(Product $product)
