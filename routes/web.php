@@ -5,7 +5,7 @@ use App\Livewire\Home;
 use App\Livewire\ProductDetail;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',Home::class)->name('home');
+Route::get('/',Home::class)->name('home')->middleware(['role:admin,staff']);
 Route::get('/product/{product}',ProductDetail::class)->name('product.detail');
 Route::get('/cart',Cart::class)->name('cart');
 // Route::view('dashboard', 'dashboard')
