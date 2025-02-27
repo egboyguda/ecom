@@ -3,10 +3,11 @@
     <livewire:hero/>
     <livewire:components.category-section/>
 
-    @if (Auth::user()->hasRole('admin'))
+    @role('admin')
      <p>ADMIN</p>
     
-    @endif
+    @endrole
+    <p>{{ Auth::user()->roles ->pluck('name') }}</p>
     <livewire:components.product-section/>
 
 </div>
